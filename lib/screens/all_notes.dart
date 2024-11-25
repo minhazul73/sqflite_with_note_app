@@ -16,17 +16,13 @@ class AllNotes extends StatelessWidget {
     final HomeController controller = Get.find<HomeController>(); // Access the controller
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Get.to(() => const Home()),
+        backgroundColor: Colors.black,
+        child: Icon(Icons.add, color: Colors.white, size: size.width * 0.081,),
+      ),
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: GestureDetector(
-              // onTap: () => Get.toNamed('/all-notes'),
-              onTap: () => Get.to(() => const Home()),
-              child: const Icon(Icons.edit_square, color: Colors.white,)),
-          ),
-        ],
         title: const Text(
           'Loose Leaf',
           style: TextStyle(
@@ -39,7 +35,7 @@ class AllNotes extends StatelessWidget {
       ),
       body: Obx(() {
         if (controller.notes.isEmpty) {
-          return const Center(child: Text("No notes available"));
+          return const Center(child: Text("Notes you add will appear here"));
         }
         
         return ListView.builder(
